@@ -1,1 +1,0 @@
-SZI_projekt
