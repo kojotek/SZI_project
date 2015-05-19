@@ -8,16 +8,13 @@
 class Tile : public iDraw
 {
 protected:
-	std::string type;
-	std::string possibleType;
+	std::bitset<CHROMOSOME_LENGTH> type;
 
 public:
 	sf::RectangleShape shape;
 	void draw();
-	std::string getType();
-	void setPossibleType( std::string pt );
-	std::string getPossibleType();
+	std::bitset<CHROMOSOME_LENGTH> getType();
+	void setType(std::bitset<CHROMOSOME_LENGTH> t);
 	virtual void interaction() = 0;
 	Tile();
 };
-

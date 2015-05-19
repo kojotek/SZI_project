@@ -19,7 +19,7 @@ void Saper::work()
 	
 	if (result != NULL)
 	{
-		result->setPossibleType("grassTile");
+		//result->setPossibleType("grassTile");
 		counter++;
 	}
 	else

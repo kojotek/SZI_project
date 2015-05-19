@@ -1,0 +1,8 @@
+packages/*
+Debug/*
+*.sdf
+*.config
+*.suo
+*.sln
+*.vcxproj
+*.filters

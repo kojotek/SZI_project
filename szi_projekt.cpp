@@ -2,16 +2,19 @@
 //
 
 #include "stdafx.h"
+#include <cstdlib>
 #include "application.h"
 #include "iDraw.h"
 #include "gameMap.h"
-#include "grassTile.h"
+#include "GrassTile.h"
+#include "DangerTile.h"
 #include "Miner.h"
 #include "Saper.h"
 #include "Cow.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	srand(time(NULL));
 
 	Miner miner;
 	Saper saper;

@@ -57,7 +57,7 @@ bool Cow::moveAnim()
 		sf::Vector2f curr(current->shape.getPosition().x, current->shape.getPosition().y);
 		sf::Vector2f tar(target->shape.getPosition().x, target->shape.getPosition().y);
 		shape.move((tar - curr) / (float)MOVE_FRAMES );
-		std::cout << target->shape.getPosition().x << std::endl;
+		//std::cout << target->shape.getPosition().x << std::endl;
 		counter++;
 		return false;
 	}

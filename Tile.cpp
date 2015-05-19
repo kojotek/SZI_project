@@ -12,17 +12,12 @@ void Tile::draw()
 	application::window.draw(shape);
 }
 
-std::string Tile::getType()
+std::bitset<CHROMOSOME_LENGTH> Tile::getType()
 {
 	return type;
 }
 
-void Tile::setPossibleType( std::string pt )
+void Tile::setType(std::bitset<CHROMOSOME_LENGTH> t)
 {
-	possibleType = pt;
-}
-
-std::string Tile::getPossibleType()
-{
-	return possibleType;
+	type = t;
 }
