@@ -22,7 +22,7 @@ private:
 	void selection();
 	void crossoverOperator();
 	void mutationOperator();
-	void showGenomes(osobnik a[POPULATION_SIZE], bool showMore);
+	void showGenomes(osobnik a[POPULATION_SIZE], std::string title, bool showMore);
 	bool randomBool();
 
 public:

@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <cstdlib>
+#include "Knowledge.h"
 #include "application.h"
 #include "iDraw.h"
 #include "gameMap.h"
@@ -31,13 +32,22 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			if (event.type == sf::Event::Closed)
 				application::window.close();
+
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Space)
+				{
+					if (application::gameState == STATE_PAUSE) application::gameState = application::previousGameState;
+					else
+					{
+						application::previousGameState = application::gameState;
+						application::gameState = STATE_PAUSE;
+					}
+				}
+			}
 		}
 
-
-
 		application::window.clear(sf::Color::Black);
-
-
 
 		switch (application::gameState)
 		{
@@ -80,8 +90,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				application::window.setTitle("Krowy probuja przejsc na druga strone...");
 
 				break;
-				
-				
+
+
+			case STATE_PAUSE:
+				application::window.setTitle("PAUZA");
+				break;
+
 		}
 
 
