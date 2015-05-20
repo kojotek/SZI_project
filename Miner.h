@@ -1,7 +1,8 @@
 #pragma once
 #include "iWork.h"
 
-#define MUTATION_RATIO 0.1
+#define MUTATION_RATIO 0.05 //szansa mutacji
+#define CROSSOVER_RATIO 0.5 //szansa krzyzowania
 
 struct osobnik
 {
@@ -22,7 +23,7 @@ private:
 	void selection();
 	void crossoverOperator();
 	void mutationOperator();
-	void showGenomes(osobnik a[POPULATION_SIZE], bool showMore);
+	void showGenomes(osobnik a[POPULATION_SIZE], std::string title, bool showMore);
 	bool randomBool();
 
 public:
