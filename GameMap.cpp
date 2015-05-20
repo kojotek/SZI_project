@@ -3,6 +3,7 @@
 #include "grassTile.h"
 #include "application.h"
 #include "iDraw.h"
+#include "types.h"
 
 GameMap::GameMap()
 {
@@ -36,6 +37,7 @@ Tile* GameMap::getTileByXY(sf::Vector2i vec)
 	{
 		return NULL;
 	}
+
 
 	return tiles[vec.x + vec.y*mapSize.x];
 }
@@ -92,15 +94,48 @@ sf::Vector2i GameMap::getTileCoord(Tile* tile)
 	{
 		for (int b(0); b < mapSize.y; b++)
 		{
-			
-			if (getTileByXY( sf::Vector2i(a,b) ) == tile)
+			Tile* temp = getTileByXY(sf::Vector2i(a, b));
+			if ( temp == tile)
 			{
 				coord.x = a;
 				coord.y = b;
-				break;
+				return coord;
 			}
 		}
 	}
 
 	return coord;
+}
+
+
+
+Tile* GameMap::getTileNeighbour(Tile* tile, direction side)
+{
+	sf::Vector2i tilePos = getTileCoord(tile);
+	
+	switch (side)
+	{
+		case LEFT:
+			return getTileByXY(tilePos + sf::Vector2i(-1,0));
+
+		case RIGHT:
+			return getTileByXY(tilePos + sf::Vector2i(1, 0));
+
+		case UP:
+			return getTileByXY(tilePos + sf::Vector2i(0, -1));
+
+		case DOWN:
+			return getTileByXY(tilePos + sf::Vector2i(0, 1));
+
+		default:
+			return NULL;
+	}
+}
+
+
+
+bool GameMap::isTileFinishingLine(Tile* tile)
+{
+	sf::Vector2i tilePos = getTileCoord(tile);
+	return (tilePos.x == mapSize.x - 1);
 }

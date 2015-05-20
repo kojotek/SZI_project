@@ -3,26 +3,28 @@
 #include "iDraw.h"
 #include "Tile.h"
 
-#define MOVE_FRAMES 120
 
 class Cow : public iWork, iDraw
 {
 private:
-	bool timeForDecission;
-	std::string decission;
-	Tile* target;
+	Tile* startTile;
 	Tile* current;
+	Tile* next;
+	bool findingWay;
+	std::string decission;
 	int counter;
+	int currentMove;
 	bool finished;
+	std::vector<direction> moves;
 
 public:
 	sf::CircleShape shape;
 
 	Cow( Tile* tile );
 	void work();
-	bool isFinished();
-	void makeNextStep();
-	bool moveAnim();
+	bool workFinished();
+	std::vector<direction> findWay();
+	bool animationStep( Tile* from, Tile* to, int step );
 	void draw();
 };
 

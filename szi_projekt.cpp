@@ -11,6 +11,7 @@
 #include "Miner.h"
 #include "Saper.h"
 #include "Cow.h"
+#include "types.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -18,7 +19,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	Miner miner;
 	Saper saper;
-	Cow* cow = new Cow(application::gameMap.getTileByXY(sf::Vector2i(0, 3)));
+	Cow* cow = NULL;
+
+	int cowPosition = 0;
 
 	while ( application::window.isOpen())
 	{
@@ -49,15 +52,36 @@ int _tmain(int argc, _TCHAR* argv[])
 				break;
 
 			case STATE_COWS:
-				if (!cow->isFinished()) cow->work();
+				if (cow == NULL)
+				{
+					if (cowPosition < NUMBER_OF_COWS)
+					{
+						cow = new Cow(application::gameMap.getTileByXY(sf::Vector2i(0, cowPosition)));
+					}
+					else
+					{
+						application::gameState = STATE_MINER;
+						cowPosition = 0;
+						break;
+					}
+					
+				}
+
+				if (!cow->workFinished())
+				{
+					cow->work();
+				}
 				else
 				{
-					application::gameState = STATE_MINER;
+					cowPosition++;
 					delete cow;
-					cow = new Cow(application::gameMap.getTileByXY(sf::Vector2i(0, 3)));
+					cow = NULL;
 				}
 				application::window.setTitle("Krowy probuja przejsc na druga strone...");
+
 				break;
+				
+				
 		}
 
 
@@ -65,7 +89,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			iDraw::drawVector[a]->draw();
 		}
-		cow->draw();	//rozwiazanie tymczasowe
+
+		if (cow != NULL)
+		{
+			cow->draw();
+		}
 
 		application::window.display();
 	}

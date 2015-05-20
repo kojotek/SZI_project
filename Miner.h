@@ -1,7 +1,7 @@
 #pragma once
 #include "iWork.h"
+#include "types.h"
 
-#define MUTATION_RATIO 0.1
 
 struct osobnik
 {

@@ -87,8 +87,8 @@ void Miner::mutationOperator()
 	{
 		for (int j = 0; j < CHROMOSOME_LENGTH; j++)
 		{
-			float p1 = (std::rand() % 100) / 100.0;
-			float p2 = (std::rand() % 100) / 100.0;
+			double p1 = (std::rand() % 100) / 100.0;
+			double p2 = (std::rand() % 100) / 100.0;
 
 			if (p1 < MUTATION_RATIO) niebezpieczne[i].genotyp.at(j) = !niebezpieczne[i].genotyp.at(j);
 			if (p2 < MUTATION_RATIO) neutralne[i].genotyp.at(j) = !neutralne[i].genotyp.at(j);

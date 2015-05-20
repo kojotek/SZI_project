@@ -13,9 +13,5 @@
 #include <SFML\Graphics.hpp>
 #include <bitset>
 
-#define POPULATION_SIZE 5 //wielkosc populacji bomb/obiektow w pojedynczej iteracji
-#define CHROMOSOME_LENGTH 6 //ilosc cech ktore posiada kazdy obiekt lub bomba
-#define NUMBER_OF_COWS 40 //liczba krow podczas pojedynczej iteracji
-
 
 // TODO: reference additional headers your program requires here
