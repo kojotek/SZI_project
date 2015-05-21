@@ -5,6 +5,7 @@
 #define STATE_MINER 0
 #define STATE_SAPER 1
 #define STATE_COWS 2
+#define STATE_PAUSE 3
 
 #define MUTATION_RATIO 0.1
 

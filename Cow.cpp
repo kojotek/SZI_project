@@ -67,12 +67,6 @@ void Cow::work()
 bool Cow::animationStep(Tile* from, Tile* to, int step)
 {
 
-	if (to == NULL)
-	{
-		std::cout << moves.size() << std::endl;
-		system("pause");
-	}
-
 	if (step < MOVE_FRAMES)
 	{
 		sf::Vector2f fromCoord(from->shape.getPosition().x, from->shape.getPosition().y);
