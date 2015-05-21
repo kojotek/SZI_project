@@ -2,9 +2,9 @@
 #include "iWork.h"
 #include "iDraw.h"
 #include "Tile.h"
+#include "types.h"
 
-
-class Cow : public iWork, iDraw
+class Cow : public iWork
 {
 private:
 	Tile* startTile;

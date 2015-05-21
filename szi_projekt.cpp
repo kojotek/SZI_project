@@ -14,15 +14,17 @@
 #include "Cow.h"
 #include "types.h"
 
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	srand(time(NULL));
 
 	Miner miner;
 	Saper saper;
-	Cow* cow = NULL;
 
-	int cowPosition = 0;
+	bool settingCows = true;
+
+	std::vector<Cow*> cows;
 
 	while ( application::window.isOpen())
 	{
@@ -62,31 +64,38 @@ int _tmain(int argc, _TCHAR* argv[])
 				break;
 
 			case STATE_COWS:
-				if (cow == NULL)
+				if (cows.size() == 0)
 				{
-					if (cowPosition < NUMBER_OF_COWS)
+					if (settingCows)
 					{
-						cow = new Cow(application::gameMap.getTileByXY(sf::Vector2i(0, cowPosition)));
+					
+						settingCows = false;
+						for (size_t i = 0; i < application::gameMap.mapSize.y; i += 2)
+						{
+							cows.push_back( new Cow( application::gameMap.getTileByXY( sf::Vector2i(0, i) ) ) );
+						}
 					}
 					else
 					{
 						application::gameState = STATE_MINER;
-						cowPosition = 0;
+						settingCows = true;
 						break;
 					}
 					
 				}
 
-				if (!cow->workFinished())
+				for (size_t i = 0; i < cows.size(); i++)
 				{
-					cow->work();
+					if (!cows[i]->workFinished())
+					{
+						cows[i]->work();
+					}
+					else
+					{
+						cows.erase(cows.begin()+i);
+					}
 				}
-				else
-				{
-					cowPosition++;
-					delete cow;
-					cow = NULL;
-				}
+
 				application::window.setTitle("Krowy probuja przejsc na druga strone...");
 
 				break;
@@ -104,9 +113,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			iDraw::drawVector[a]->draw();
 		}
 
-		if (cow != NULL)
+		for (size_t i = 0; i < cows.size(); i++)
 		{
-			cow->draw();
+			cows[i]->draw();
 		}
 
 		application::window.display();

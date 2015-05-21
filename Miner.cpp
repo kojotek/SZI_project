@@ -84,20 +84,9 @@ void Miner::generateNewPopulation()
 	selection();
 	showGenomes(niebezpieczne, "populacja rodzicow: ", 1);
 
-
-void Miner::mutationOperator()
-{
-	for (int i = 0; i < POPULATION_SIZE; i++)
-	{
-		for (int j = 0; j < CHROMOSOME_LENGTH; j++)
-		{
-			double p1 = (std::rand() % 100) / 100.0;
-			double p2 = (std::rand() % 100) / 100.0;
-
 	//generowanie populacji potomnej
 	mutationOperator();
 	showGenomes(niebezpieczne, "po mutacji:         ", 0);
-
 
 	crossoverOperator();
 	showGenomes(niebezpieczne, "po krzyzowaniu:     ", 0);

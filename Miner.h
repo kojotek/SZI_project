@@ -2,7 +2,6 @@
 #include "iWork.h"
 #include "types.h"
 
-
 struct osobnik
 {
 	std::bitset<CHROMOSOME_LENGTH> genotyp;

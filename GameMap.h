@@ -4,7 +4,7 @@
 
 class GameMap
 {
-private:
+public:
 	std::vector<Tile*> tiles;
 
 public:

@@ -2,6 +2,8 @@
 #include<vector>
 #include <bitset>
 #include "stdafx.h"
+#include "types.h"
+
 
 struct wpis
 {

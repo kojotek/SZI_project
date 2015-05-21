@@ -12,7 +12,7 @@ iDraw::iDraw()
 
 iDraw::~iDraw()
 {
-	for (size_t a(0); a < drawVector.size(); a++)
+	for (int a(0); a < drawVector.size(); a++)
 	{
 		if (this == drawVector[a])
 		{

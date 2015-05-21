@@ -1,4 +1,6 @@
 #include "Knowledge.h"
+#include "types.h"
+#include "Application.h"
 
 std::vector<wpis> Knowledge::rejestr;
 
