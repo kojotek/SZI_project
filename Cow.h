@@ -10,21 +10,27 @@ private:
 	Tile* startTile;
 	Tile* current;
 	Tile* next;
-	bool findingWay;
+	
 	std::string decission;
 	int counter;
 	int currentMove;
 	bool finished;
-	std::vector<direction> moves;
+	std::vector<int> moves;
+
+	Tile* finishingNode;
 
 public:
+	bool findingWay;
 	sf::CircleShape shape;
 
 	Cow( Tile* tile );
 	void work();
 	bool workFinished();
-	std::vector<direction> findWay();
 	bool animationStep( Tile* from, Tile* to, int step );
 	void draw();
+
+	std::vector<int> reconstructWay();
+	Tile* findWay();
+
 };
 

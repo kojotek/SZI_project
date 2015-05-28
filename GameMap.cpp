@@ -109,7 +109,7 @@ sf::Vector2i GameMap::getTileCoord(Tile* tile)
 
 
 
-Tile* GameMap::getTileNeighbour(Tile* tile, direction side)
+Tile* GameMap::getTileNeighbour(Tile* tile, int side)
 {
 	sf::Vector2i tilePos = getTileCoord(tile);
 	
@@ -138,4 +138,23 @@ bool GameMap::isTileFinishingLine(Tile* tile)
 {
 	sf::Vector2i tilePos = getTileCoord(tile);
 	return (tilePos.x == mapSize.x - 1);
+}
+
+
+int GameMap::getDistanceFromFinish(Tile* tile)
+{
+	return (application::gameMap.mapSize.x - application::gameMap.getTileCoord(tile).x);
+}
+
+
+void GameMap::clearPathfinding()
+{
+	for (size_t i = 0; i < tiles.size(); i++)
+	{
+		tiles[i]->f = 0;
+		tiles[i]->g = 0;
+		tiles[i]->h = 0;
+		tiles[i]->parent = NULL;
+		tiles[i]->whichSonAmI = -1;
+	}
 }

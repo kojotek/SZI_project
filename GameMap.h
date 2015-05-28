@@ -14,9 +14,10 @@ public:
 	bool setTileByXY(sf::Vector2i vec, Tile* newOne);
 	bool setTileByEnum(int index, Tile* newOne);
 	sf::Vector2i getTileCoord( Tile* tile );
-	Tile* getTileNeighbour(Tile* tile, direction side);
+	Tile* getTileNeighbour(Tile* tile, int side);
 	bool isTileFinishingLine(Tile* tile);
+	int getDistanceFromFinish(Tile* tile);
+	void clearPathfinding();
 	GameMap();
 	~GameMap();
 };
-

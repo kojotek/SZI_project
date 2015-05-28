@@ -1,6 +1,6 @@
 #pragma once
 
-#define MOVE_FRAMES 30
+#define MOVE_FRAMES 150
 
 
 #define STATE_MINER 0
@@ -20,7 +20,7 @@
 
 #define TILE_SIZE 30
 
-
-enum direction{
-	LEFT = 0, RIGHT, UP, DOWN
-};
+#define LEFT	0
+#define RIGHT	1
+#define UP		2
+#define DOWN	3

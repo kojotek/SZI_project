@@ -6,6 +6,7 @@ GrassTile::GrassTile()
 {
 	shape.setFillColor(sf::Color::Green);
 	type = 0;
+	weight = 1;
 }
 
 void GrassTile::interaction()

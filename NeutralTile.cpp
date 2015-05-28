@@ -6,6 +6,7 @@
 NeutralTile::NeutralTile()
 {
 	shape.setFillColor(sf::Color::Yellow);
+	weight = 100;
 }
 
 

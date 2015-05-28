@@ -25,6 +25,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	bool settingCows = true;
 
 	std::vector<Cow*> cows;
+	application::gameMap.clearPathfinding();
 
 	while ( application::window.isOpen())
 	{
@@ -71,6 +72,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					
 						settingCows = false;
 						for (size_t i = 0; i < application::gameMap.mapSize.y; i += 2)
+						//for (size_t i = 0; i < 2; i += 2)
 						{
 							cows.push_back( new Cow( application::gameMap.getTileByXY( sf::Vector2i(0, i) ) ) );
 						}

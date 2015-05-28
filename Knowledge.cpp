@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Knowledge.h"
 #include "types.h"
 #include "Application.h"
