@@ -4,8 +4,12 @@
 #include "Application.h"
 
 
+std::vector<Cow*> Cow::allCows;
+
+
 Cow::Cow(Tile* tile)
 {
+	allCows.push_back(this);
 	startTile = tile;
 	current = tile;
 	current = tile;
@@ -21,6 +25,14 @@ Cow::Cow(Tile* tile)
 	finished = false;
 	currentMove = 0;
 	counter = 0;
+}
+
+
+
+Cow::~Cow()
+{
+	std::vector<Cow*>::iterator it = std::find(allCows.begin(), allCows.end(), this);
+	allCows.erase(it);
 }
 
 
@@ -41,14 +53,30 @@ void Cow::work()
 			{
 				if (!animationStep(current, next, counter))
 				{
-					counter = 0;
+					counter = 0;			
 					current = next;
-					next = application::gameMap.getTileNeighbour(next, moves[currentMove]);
-					
+
+					Tile* possibleNextMove = application::gameMap.getTileNeighbour(next, moves[currentMove]);
+					bool MovementPossible = true;
+
+					for (int i = 0; allCows[i] != this && i<allCows.size(); i++)
+					{
+						if (allCows[i]->next == possibleNextMove || allCows[i]->current == possibleNextMove)
+						{
+							next = current;
+							MovementPossible = false;
+						}
+					}
+					if (MovementPossible)
+					{
+						next = possibleNextMove;
+						currentMove++;
+					}
+
 					//zrob interakcje z polem
 					//if krowa.martwa { finished = true; return; }
 
-					currentMove++;
+					
 
 				}
 

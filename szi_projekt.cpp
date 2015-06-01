@@ -24,7 +24,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	bool settingCows = true;
 
-	std::vector<Cow*> cows;
+	//std::vector<Cow*> cows;
 	application::gameMap.clearPathfinding();
 
 	while ( application::window.isOpen())
@@ -65,7 +65,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				break;
 
 			case STATE_COWS:
-				if (cows.size() == 0)
+				if (Cow::allCows.size() == 0)
 				{
 					if (settingCows)
 					{
@@ -74,7 +74,7 @@ int _tmain(int argc, _TCHAR* argv[])
 						for (size_t i = 0; i < application::gameMap.mapSize.y; i += 2)
 						//for (size_t i = 0; i < 2; i += 2)
 						{
-							cows.push_back( new Cow( application::gameMap.getTileByXY( sf::Vector2i(0, i) ) ) );
+							new Cow(application::gameMap.getTileByXY(sf::Vector2i(0, i)));
 						}
 					}
 					else
@@ -86,15 +86,15 @@ int _tmain(int argc, _TCHAR* argv[])
 					
 				}
 
-				for (size_t i = 0; i < cows.size(); i++)
+				for (size_t i = 0; i < Cow::allCows.size(); i++)
 				{
-					if (!cows[i]->workFinished())
+					if (!Cow::allCows[i]->workFinished())
 					{
-						cows[i]->work();
+						Cow::allCows[i]->work();
 					}
 					else
 					{
-						cows.erase(cows.begin()+i);
+						Cow::allCows.erase(Cow::allCows.begin() + i);
 					}
 				}
 
@@ -115,9 +115,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			iDraw::drawVector[a]->draw();
 		}
 
-		for (size_t i = 0; i < cows.size(); i++)
+		for (size_t i = 0; i < Cow::allCows.size(); i++)
 		{
-			cows[i]->draw();
+			Cow::allCows[i]->draw();
 		}
 
 		application::window.display();
