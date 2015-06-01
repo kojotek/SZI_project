@@ -19,7 +19,7 @@ void Knowledge::wyczyscRejestr()
 int Knowledge::countDangerObject(std::bitset<CHROMOSOME_LENGTH> genotyp)
 {
 	//brak danych o pszemarszu krow - jak narazie ocena losowo
-	int result = std::rand() % NUMBER_OF_COWS;
+	int result = rand() % NUMBER_OF_COWS;
 	bool dodaj = true;
 
 	for (int i = 0; i < temp1.size(); i++)
@@ -40,7 +40,7 @@ int Knowledge::countDangerObject(std::bitset<CHROMOSOME_LENGTH> genotyp)
 int Knowledge::countNeutralObject(std::bitset<CHROMOSOME_LENGTH> genotyp)
 {
 	//brak danych o pszemarszu krow - jak narazie ocena losowo
-	int result = std::rand() % NUMBER_OF_COWS;
+	int result = rand() % NUMBER_OF_COWS;
 	bool dodaj = true;
 
 	for (int i = 0; i < temp2.size(); i++)

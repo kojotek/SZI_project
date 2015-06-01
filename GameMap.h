@@ -1,6 +1,6 @@
 #pragma once
-#include "tile.h"
-#include "types.h"
+
+#include "Tile.h"
 
 class GameMap
 {

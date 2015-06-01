@@ -2,7 +2,7 @@
 #include "Cow.h"
 #include "Tile.h"
 #include "Application.h"
-
+#include "types.h"
 
 std::vector<Cow*> Cow::allCows;
 
@@ -56,6 +56,8 @@ void Cow::work()
 					counter = 0;			
 					current = next;
 
+					current->interaction(this);
+
 					Tile* possibleNextMove = application::gameMap.getTileNeighbour(next, moves[currentMove]);
 					bool MovementPossible = true;
 
@@ -72,10 +74,6 @@ void Cow::work()
 						next = possibleNextMove;
 						currentMove++;
 					}
-
-					//zrob interakcje z polem
-					//if krowa.martwa { finished = true; return; }
-
 					
 
 				}
@@ -204,4 +202,12 @@ std::vector<int> Cow::reconstructWay()
 	std::reverse(result.begin(), result.end());
 	return result;
 
+}
+
+
+
+
+void Cow::kill()
+{
+	finished = true;
 }

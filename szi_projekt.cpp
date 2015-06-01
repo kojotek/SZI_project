@@ -2,18 +2,10 @@
 //
 
 #include "stdafx.h"
-#include <cstdlib>
-#include "Knowledge.h"
-#include "application.h"
-#include "iDraw.h"
-#include "gameMap.h"
-#include "GrassTile.h"
-#include "DangerTile.h"
+#include "Application.h"
+#include "types.h"
 #include "Miner.h"
 #include "Saper.h"
-#include "Cow.h"
-#include "types.h"
-
 
 int _tmain(int argc, _TCHAR* argv[])
 {

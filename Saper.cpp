@@ -1,6 +1,7 @@
 #include "stdafx.h"
-#include "saper.h"
-#include "application.h"
+#include "Saper.h"
+#include "Tile.h"
+#include "Application.h"
 
 Saper::Saper()
 {

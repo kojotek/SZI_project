@@ -1,6 +1,5 @@
 #pragma once
-
-#include "gameMap.h"
+#include "GameMap.h"
 
 class application
 {

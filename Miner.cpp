@@ -1,10 +1,11 @@
 #include "stdafx.h"
-#include "miner.h"
-#include "application.h"
+#include "Miner.h"
+#include "types.h"
+#include "DangerTile.h"
+#include "GrassTile.h"
+#include "NeutralTile.h"
+#include "Application.h"
 #include "Knowledge.h"
-#include "grassTile.h"
-#include "dangerTile.h"
-#include "neutralTile.h"
 
 Miner::Miner()
 {
@@ -49,16 +50,18 @@ void Miner::work()
 	//rozstaw 
 	switch(rodzajPola)
 	{
+		
 		case 0:
 			result = application::gameMap.setTileByEnum(counter, new GrassTile());
 			break;
-
+			
 		case 1:
 			nowy = new DangerTile();
 			nowy->setType(niebezpieczne[numerOsobnika].genotyp);
 			result = application::gameMap.setTileByEnum(counter, nowy);
 			break;
-
+			
+			
 		case 2:
 			nowy = new NeutralTile();
 			nowy->setType(neutralne[numerOsobnika].genotyp);

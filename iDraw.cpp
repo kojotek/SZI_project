@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "iDraw.h"
-#include <vector>
 
 std::vector<iDraw*> iDraw::drawVector;
 

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "NeutralTile.h"
-#include "application.h"
-
+#include "Knowledge.h"
 
 NeutralTile::NeutralTile()
 {
@@ -10,6 +9,8 @@ NeutralTile::NeutralTile()
 }
 
 
-void NeutralTile::interaction()
+void NeutralTile::interaction(Cow* cow)
 {
+	wpis w(this->getType(), REACTION_NONE);
+	Knowledge::rejestr.push_back(w);
 }

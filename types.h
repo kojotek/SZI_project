@@ -15,7 +15,7 @@
 
 #define POPULATION_SIZE 5 //wielkosc populacji bomb/obiektow w pojedynczej iteracji
 #define CHROMOSOME_LENGTH 6 //ilosc cech ktore posiada kazdy obiekt lub bomba
-#define NUMBER_OF_COWS application::gameMap.mapSize.y//liczba krow podczas pojedynczej iteracji
+#define NUMBER_OF_COWS application::gameMap.mapSize.y //liczba krow podczas pojedynczej iteracji
 
 
 #define TILE_SIZE 30
@@ -24,3 +24,7 @@
 #define RIGHT	1
 #define UP		2
 #define DOWN	3
+
+
+#define REACTION_NONE 0
+#define REACTION_EXPLOSION 1

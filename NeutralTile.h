@@ -1,10 +1,13 @@
 #pragma once
-#include "tile.h"
+
+#include "NeutralTile.h"
+#include "Cow.h"
+
 class NeutralTile : public Tile
 {
 public:
 	NeutralTile();
-	void interaction();
+	void interaction(Cow* cow);
 };
 
 

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "DangerTile.h"
-#include "application.h"
+#include "GrassTile.h"
+#include "Application.h"
+#include "Knowledge.h"
 
 
 DangerTile::DangerTile()
@@ -10,7 +12,11 @@ DangerTile::DangerTile()
 }
 
 
-void DangerTile::interaction()
+void DangerTile::interaction(Cow* cow)
 {
+	cow->kill();
+	wpis w(this->getType(), REACTION_EXPLOSION);
+	Knowledge::rejestr.push_back(w);
+	application::gameMap.setTileByXY( application::gameMap.getTileCoord(this), new GrassTile());
 }
 

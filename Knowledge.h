@@ -1,9 +1,6 @@
 #pragma once
-#include<vector>
-#include <bitset>
-#include "stdafx.h"
-#include "types.h"
 
+#include "types.h"
 
 struct wpis
 {

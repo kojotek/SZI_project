@@ -1,6 +1,5 @@
 #include "stdafx.h"
-#include "grassTile.h"
-#include "application.h"
+#include "GrassTile.h"
 
 GrassTile::GrassTile()                       
 {
@@ -9,6 +8,6 @@ GrassTile::GrassTile()
 	weight = 1;
 }
 
-void GrassTile::interaction()
+void GrassTile::interaction(Cow* cow)
 {
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "iWork.h"
+
 #include "types.h"
 
 struct osobnik
@@ -8,7 +8,7 @@ struct osobnik
 	int ocena = 0;
 };
 
-class Miner : public iWork
+class Miner
 {
 private:
 	int counter;

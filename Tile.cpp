@@ -1,6 +1,7 @@
 #include "stdafx.h"
-#include "tile.h"
-#include "application.h"
+#include "types.h"
+#include "Tile.h"
+#include "Application.h"
 
 Tile::Tile() : shape(sf::Vector2f(TILE_SIZE-1, TILE_SIZE-1))
 {

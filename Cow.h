@@ -1,10 +1,10 @@
 #pragma once
-#include "iWork.h"
-#include "iDraw.h"
-#include "Tile.h"
-#include "types.h"
 
-class Cow : public iWork
+#include "Tile.h"
+
+class Tile;
+
+class Cow
 {
 private:
 	Tile* startTile;
@@ -29,6 +29,7 @@ public:
 	bool workFinished();
 	bool animationStep( Tile* from, Tile* to, int step );
 	void draw();
+	void kill();
 
 	std::vector<int> reconstructWay();
 	Tile* findWay();

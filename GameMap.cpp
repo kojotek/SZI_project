@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "gameMap.h"
-#include "grassTile.h"
-#include "application.h"
-#include "iDraw.h"
+#include "GameMap.h"
 #include "types.h"
+#include "Application.h"
+#include "GrassTile.h"
+
 
 GameMap::GameMap()
 {

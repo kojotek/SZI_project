@@ -1,9 +1,12 @@
 #pragma once
-#include "tile.h"
+
+#include "GrassTile.h"
+#include "Cow.h"
+
 class GrassTile : public Tile
 {
 public:
 	GrassTile();
-	void interaction();
+	void interaction(Cow* cow);
 };
 

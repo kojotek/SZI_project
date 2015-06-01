@@ -1,12 +1,13 @@
 #pragma once
-#include "iWork.h"
-class Saper : public iWork
+
+
+class Saper
 {
-private:
-	int counter;
 
 public:
 	Saper();
 	void work();
+	bool workFinished;
+	int counter;
 };
 
