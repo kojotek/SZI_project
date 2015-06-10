@@ -21,6 +21,7 @@ public:
 	void clearPathfinding();
 	bool saveObjectsInFile();
 	std::string intToStr(int n);
+	void loadFromFile(std::string path, int type);
 	GameMap();
 	~GameMap();
 };

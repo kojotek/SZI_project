@@ -1,6 +1,6 @@
 #pragma once
 
-#define MOVE_FRAMES 15
+#define MOVE_FRAMES 40
 
 
 #define STATE_MINER 0
@@ -35,3 +35,7 @@
 
 #define REACTION_NONE 0
 #define REACTION_EXPLOSION 1
+
+#define RODZAJ_TRAWA		0
+#define RODZAJ_NEUTRALNY	1
+#define RODZAJ_MINA			2

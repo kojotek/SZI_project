@@ -8,7 +8,6 @@
 DangerTile::DangerTile()
 {
 	shape.setFillColor(sf::Color::Red);
-	weight = 2000;
 	rodzaj = 2;
 }
 

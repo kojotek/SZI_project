@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Tile.h"
+#include "tile.h"
 #include "Application.h"
 
 struct wpis

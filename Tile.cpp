@@ -10,7 +10,7 @@ Tile::Tile() : shape(sf::Vector2f(TILE_SIZE-1, TILE_SIZE-1))
 	h = 0;
 	parent = NULL;
 	whichSonAmI = -1;
-	weight = 0;
+	weight = 1;
 }
 
 void Tile::draw()

@@ -159,37 +159,6 @@ void GameMap::clearPathfinding()
 	}
 }
 
-bool GameMap::saveObjectsInFile()
-{
-	std::fstream plik;
-	plik.open("output.txt", std::ios::out);
-
-	if (plik.good() == true)
-	{
-		for (int i = 0; i < tiles.size(); i++)
-		{
-			switch (tiles[i]->rodzaj)
-			{
-				case 0: 
-					plik << "" << std::endl;
-					break;
-
-				case 1:
-					plik << "obiekty\\" + intToStr(tiles[i]->getType()) + ".jpg"<< std::endl;
-					break;
-
-				case 2:
-					plik << "miny\\" + intToStr(tiles[i]->getType()) + ".jpg" << std::endl;
-					break;
-			}
-		}
-
-		plik.close();
-	}
-	else return false;
-
-	return true;
-}
 
 std::string GameMap::intToStr(int n)
 {
@@ -205,4 +174,69 @@ std::string GameMap::intToStr(int n)
 	for (int i = tmp.size() - 1; i >= 0; i--)
 		ret += tmp[i];
 	return ret;
+}
+
+
+
+struct typeDangerous
+{
+	int type;
+	int weight;
+};
+
+
+
+void GameMap::loadFromFile(std::string path, int neededType)
+{
+	std::ifstream file(path, std::ifstream::in);
+	std::string str;
+	std::vector<std::string> words;
+	std::vector<typeDangerous> td;
+
+	while (file >> str)
+	{
+		words.push_back(str);
+	}
+	file.close();
+
+	for (size_t i = 0; i < words.size(); i++)
+	{
+		typeDangerous temptd;
+
+		if (i % 2 == 0)
+		{
+			std::string toRemove(".jpg");
+			std::string::size_type siz = words[i].find(toRemove);
+			if (siz != std::string::npos) words[i].erase(siz, toRemove.length());
+			temptd.type = atoi(words[i].c_str());
+		}
+		else
+		{
+			int possibleType = atoi(words[i].c_str());
+			switch (possibleType)
+			{
+				case 0:	temptd.weight = 2000; break;
+				case 1:	temptd.weight = 1200; break;
+				case 2:	temptd.weight = 500; break;
+				case 3:	temptd.weight = 100; break;
+			}
+			td.push_back(temptd);
+		}
+	}
+
+	for (size_t i = 0; i < tiles.size(); i++)
+	{
+		if (tiles[i]->rodzaj == neededType)
+		{
+			for (size_t w = 0; w < td.size(); w++)
+			{
+				if (td[w].type == tiles[i]->getType())
+				{
+					tiles[i]->weight += td[w].weight;
+					break;
+				}
+			}
+		}
+	}
+
 }

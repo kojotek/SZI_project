@@ -8,7 +8,7 @@
 #include "Saper.h"
 #include "texture.h"
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
 	srand(time(NULL));
 
@@ -63,7 +63,7 @@ int main()
 				{
 					if (settingCows)
 					{
-
+					
 						settingCows = false;
 						for (size_t i = 0; i < application::gameMap.mapSize.y; i += 2)
 						//for (size_t i = 0; i < 2; i += 2)
@@ -77,7 +77,7 @@ int main()
 						settingCows = true;
 						break;
 					}
-
+					
 				}
 
 				for (size_t i = 0; i < Cow::allCows.size(); i++)
@@ -119,7 +119,7 @@ int main()
 		application::window.draw(line);
 		line.move(TILE_SIZE * SIZE_X - 2, 0);
 		application::window.draw(line);
-
+		
 		sf::RectangleShape line2(sf::Vector2f((application::gameMap.mapSize.x - 2) * TILE_SIZE, 5));
 		line2.setFillColor(sf::Color::Black);
 		line2.move(TILE_SIZE, TILE_SIZE * SIZE_Y - 2);

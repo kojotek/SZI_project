@@ -39,6 +39,7 @@ Miner::Miner()
 		for (int j = 0; j < NEUTRAL_OBJECT_LIMIT; j++)//rozkladanie elementow otoczenia
 		{
 			int r = (std::rand() % (NUMBER_OF_NEUTRAL_OBJECTS)) + 1;
+
 			nowy = new NeutralTile();
 			nowy->setType(r);
 

@@ -9,8 +9,8 @@
 
 #include <stdio.h>
 #include <iostream>
-// #include <tchar.h>
-#include <SFML/Graphics.hpp>
+#include <tchar.h>
+#include <SFML\Graphics.hpp>
 #include <bitset>
 #include <fstream>
 

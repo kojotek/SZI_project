@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Tile.h"
+#include "tile.h"
 #include "GrassTile.h"
 
 struct osobnik
@@ -28,7 +28,7 @@ private:
 	bool czyWygenerowac;
 
 	osobnik obszar[POPULATION_SIZE]; //populacja min i bomb
-
+	
 	void generateNewPopulation();
 	void selection();
 	void crossoverOperator();

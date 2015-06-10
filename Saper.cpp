@@ -12,10 +12,12 @@ Saper::Saper()
 
 void Saper::work()
 {
-	if (application::gameMap.saveObjectsInFile()) workFinished = true;
+	workFinished = true;
 
 	if (workFinished)
 	{
+		application::gameMap.loadFromFile("folder_objects_best_prediction.txt", RODZAJ_NEUTRALNY);
+		application::gameMap.loadFromFile("folder_mine_best_prediction.txt", RODZAJ_MINA);
 		application::gameState = STATE_COWS;
 		counter = 0;
 		workFinished = false;
