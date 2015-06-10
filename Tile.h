@@ -3,7 +3,7 @@
 #include "iDraw.h"
 #include "Cow.h"
 #include "types.h"
-#include "application.h"
+#include "Application.h"
 #include "texture.h"
 
 class Cow;
