@@ -8,6 +8,7 @@ class NeutralTile : public Tile
 public:
 	NeutralTile();
 	void interaction(Cow* cow);
+	void setType(int t);
 };
 
 

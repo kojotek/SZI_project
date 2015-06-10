@@ -1,5 +1,6 @@
 #pragma once
 #include "GameMap.h"
+class GameMap;
 
 class application
 {

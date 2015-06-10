@@ -9,14 +9,19 @@ DangerTile::DangerTile()
 {
 	shape.setFillColor(sf::Color::Red);
 	weight = 2000;
+	rodzaj = 2;
 }
-
 
 void DangerTile::interaction(Cow* cow)
 {
 	cow->kill();
-	wpis w(this->getType(), REACTION_EXPLOSION);
+	wpis w(this->getType(), REACTION_EXPLOSION, application::gameMap.getTileCoord(this));
 	Knowledge::rejestr.push_back(w);
 	application::gameMap.setTileByXY( application::gameMap.getTileCoord(this), new GrassTile());
 }
 
+void DangerTile::setType(int t)
+{
+	type = t;
+	shape.setTexture(&texture::danger[t]);
+}

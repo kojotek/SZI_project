@@ -1,59 +1,27 @@
 #include "stdafx.h"
 #include "Knowledge.h"
 #include "types.h"
-#include "Application.h"
 
 std::vector<wpis> Knowledge::rejestr;
-
-//tymczasowe wektory potrzebne poki krowy niezaczna zrzucac zdarzen do rejestru
-std::vector<wpis> Knowledge::temp1; //dla obiektow niebezpiecznych
-std::vector<wpis> Knowledge::temp2; //dla obiektow neutralnych
 
 void Knowledge::wyczyscRejestr()
 {
 	rejestr.clear();
-	temp1.clear();
-	temp2.clear();
 }
 
-int Knowledge::countDangerObject(std::bitset<CHROMOSOME_LENGTH> genotyp)
+int Knowledge::getScore(Tile * pole, int n, int x, int y)
 {
-	//brak danych o pszemarszu krow - jak narazie ocena losowo
-	int result = rand() % NUMBER_OF_COWS;
-	bool dodaj = true;
-
-	for (int i = 0; i < temp1.size(); i++)
+	sf::Vector2i coord;
+	coord.x = ((n % 3) * SIZE_X) + x + 1;
+	coord.y = ((n / 3) * 10) + y;
+	
+	for (int i = 0; i < rejestr.size(); i++)
 	{
-		if (temp1.at(i).type == genotyp)
-		{
-			result = temp1.at(i).reaction;
-			dodaj = false;
-			break;
-		}
+		if (coord == rejestr.at(i).coordinates && pole->rodzaj == 2) return DANGER_OBJECT_PRICE;
+		if ((coord == rejestr.at(i).coordinates && pole->rodzaj == 1) || pole->rodzaj == 0) return 0;
 	}
 
-	if (dodaj) temp1.push_back(wpis(genotyp, result));
-
-	return result;
+	if (pole->rodzaj == 1) return NEUTRAL_OBJECT_PRICE;
+	return 0;
 }
 
-int Knowledge::countNeutralObject(std::bitset<CHROMOSOME_LENGTH> genotyp)
-{
-	//brak danych o pszemarszu krow - jak narazie ocena losowo
-	int result = rand() % NUMBER_OF_COWS;
-	bool dodaj = true;
-
-	for (int i = 0; i < temp2.size(); i++)
-	{
-		if (temp2.at(i).type == genotyp)
-		{
-			result = temp2.at(i).reaction;
-			dodaj = false;
-			break;
-		}
-	}
-
-	if (dodaj) temp2.push_back(wpis(genotyp, result));
-
-	return result;
-}

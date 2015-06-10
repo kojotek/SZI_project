@@ -6,6 +6,7 @@
 #include "types.h"
 #include "Miner.h"
 #include "Saper.h"
+#include "texture.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -13,6 +14,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	Miner miner;
 	Saper saper;
+	texture tex;
 
 	bool settingCows = true;
 
@@ -106,6 +108,22 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			iDraw::drawVector[a]->draw();
 		}
+
+		sf::RectangleShape line(sf::Vector2f(5, application::gameMap.mapSize.y * TILE_SIZE));
+		line.setFillColor(sf::Color::Black);
+		line.move(TILE_SIZE - 2, 0);
+		application::window.draw(line);
+		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		application::window.draw(line);
+		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		application::window.draw(line);
+		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		application::window.draw(line);
+		
+		sf::RectangleShape line2(sf::Vector2f((application::gameMap.mapSize.x - 2) * TILE_SIZE, 5));
+		line2.setFillColor(sf::Color::Black);
+		line2.move(TILE_SIZE, TILE_SIZE * SIZE_Y - 2);
+		application::window.draw(line2);
 
 		for (size_t i = 0; i < Cow::allCows.size(); i++)
 		{

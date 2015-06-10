@@ -8,5 +8,6 @@ class DangerTile : public Tile
 public:
 	DangerTile();
 	void interaction(Cow* cow);
+	void setType(int t);
 };
 

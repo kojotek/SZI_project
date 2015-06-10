@@ -13,20 +13,14 @@ Tile::Tile() : shape(sf::Vector2f(TILE_SIZE-1, TILE_SIZE-1))
 	weight = 0;
 }
 
-
 void Tile::draw()
 {
 	application::window.draw(shape);
 }
 
-std::bitset<CHROMOSOME_LENGTH> Tile::getType()
+int Tile::getType()
 {
 	return type;
-}
-
-void Tile::setType(std::bitset<CHROMOSOME_LENGTH> t)
-{
-	type = t;
 }
 
 bool Tile::onList(std::vector<Tile*> ls)

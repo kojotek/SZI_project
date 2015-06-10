@@ -1,27 +1,28 @@
 #pragma once
 
 #include "types.h"
+#include "tile.h"
+#include "Application.h"
 
 struct wpis
 {
-	wpis(std::bitset<CHROMOSOME_LENGTH> a, int b)
+	wpis(int a, int b, sf::Vector2i coord) //typ, reakcja, koordynaty
 	{
 		type = a;
 		reaction = b;
+		coordinates = coord;
 	}
 
-	std::bitset<CHROMOSOME_LENGTH> type;
+	int type;
 	int reaction = 0;
+	sf::Vector2i coordinates;
 };
 
 class Knowledge
 {
 public:
 	static std::vector<wpis> rejestr;
-	static std::vector<wpis> temp1; //tymczasowy wektor potrzebny poki krowy niezaczna zrzucac zdarzen do rejestru
-	static std::vector<wpis> temp2; //tymczasowy wektor potrzebny poki krowy niezaczna zrzucac zdarzen do rejestru
 	static void wyczyscRejestr();
-	static int countDangerObject(std::bitset<CHROMOSOME_LENGTH> genotyp);
-	static int countNeutralObject(std::bitset<CHROMOSOME_LENGTH> genotyp);
+	static int getScore(Tile * pole, int n, int x, int y);
 };
 

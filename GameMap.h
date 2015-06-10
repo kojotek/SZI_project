@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Tile.h"
+class Tile;
 
 class GameMap
 {
@@ -18,6 +19,8 @@ public:
 	bool isTileFinishingLine(Tile* tile);
 	int getDistanceFromFinish(Tile* tile);
 	void clearPathfinding();
+	bool saveObjectsInFile();
+	std::string intToStr(int n);
 	GameMap();
 	~GameMap();
 };

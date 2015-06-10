@@ -158,3 +158,51 @@ void GameMap::clearPathfinding()
 		tiles[i]->whichSonAmI = -1;
 	}
 }
+
+bool GameMap::saveObjectsInFile()
+{
+	std::fstream plik;
+	plik.open("output.txt", std::ios::out);
+
+	if (plik.good() == true)
+	{
+		for (int i = 0; i < tiles.size(); i++)
+		{
+			switch (tiles[i]->rodzaj)
+			{
+				case 0: 
+					plik << "" << std::endl;
+					break;
+
+				case 1:
+					plik << "obiekty\\" + intToStr(tiles[i]->getType()) + ".jpg"<< std::endl;
+					break;
+
+				case 2:
+					plik << "miny\\" + intToStr(tiles[i]->getType()) + ".jpg" << std::endl;
+					break;
+			}
+		}
+
+		plik.close();
+	}
+	else return false;
+
+	return true;
+}
+
+std::string GameMap::intToStr(int n)
+{
+	std::string tmp, ret;
+	if (n < 0) {
+		ret = "-";
+		n = -n;
+	}
+	do {
+		tmp += n % 10 + 48;
+		n -= n % 10;
+	} while (n /= 10);
+	for (int i = tmp.size() - 1; i >= 0; i--)
+		ret += tmp[i];
+	return ret;
+}

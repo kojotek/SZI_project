@@ -12,6 +12,7 @@
 #include <tchar.h>
 #include <SFML\Graphics.hpp>
 #include <bitset>
+#include <fstream>
 
 
 // TODO: reference additional headers your program requires here

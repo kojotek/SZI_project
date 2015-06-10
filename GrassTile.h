@@ -8,5 +8,6 @@ class GrassTile : public Tile
 public:
 	GrassTile();
 	void interaction(Cow* cow);
+	void setType(int t);
 };
 

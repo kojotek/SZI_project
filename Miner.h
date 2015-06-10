@@ -1,10 +1,23 @@
 #pragma once
 
 #include "types.h"
+#include "tile.h"
+#include "GrassTile.h"
 
 struct osobnik
 {
-	std::bitset<CHROMOSOME_LENGTH> genotyp;
+	osobnik()
+	{
+		for (int i = 0; i < SIZE_X; i++)
+		{
+			for (int j = 0; j < SIZE_Y; j++)
+			{
+				genotyp[i][j] = new GrassTile();
+			}
+		}
+	}
+
+	Tile * genotyp[SIZE_X][SIZE_Y];
 	int ocena = 0;
 };
 
@@ -14,15 +27,13 @@ private:
 	int counter;
 	bool czyWygenerowac;
 
-	osobnik niebezpieczne[POPULATION_SIZE]; //populacja min i bomb
-	osobnik neutralne[POPULATION_SIZE]; //populacja obiektow otoczenia
+	osobnik obszar[POPULATION_SIZE]; //populacja min i bomb
 	
 	void generateNewPopulation();
 	void selection();
 	void crossoverOperator();
 	void mutationOperator();
 	void showGenomes(osobnik a[POPULATION_SIZE], std::string title, bool showMore);
-	bool randomBool();
 
 public:
 	void work();
