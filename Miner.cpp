@@ -60,7 +60,11 @@ Miner::Miner()
 
 void Miner::work()
 {
-	if (czyWygenerowac) generateNewPopulation();
+	if (czyWygenerowac) 
+	{
+		iDraw::drawVector.clear();
+		generateNewPopulation();
+	}
 	
 	bool result;
 
@@ -115,6 +119,7 @@ void Miner::work()
 
 void Miner::generateNewPopulation()
 {
+
 	czyWygenerowac = false;
 
 	//selekcja obecnej populacji i utworzenie populacji rodzicielskiej
@@ -141,12 +146,9 @@ void Miner::selection()
 				obszar[i].ocena = obszar[i].ocena + score;
 			}
 		}
-		std::cout << obszar[i].ocena << " ";
 		sumaOcen = sumaOcen + obszar[i].ocena;
 	}
 	Knowledge::wyczyscRejestr(); //czyszczenie rejestru
-	std::cout << std::endl;
-
 	
 	//tworzenie populacji rodzicielskiej - metoda ruletki
 	osobnik populacjaRodzicielska[POPULATION_SIZE];
@@ -222,9 +224,24 @@ void Miner::crossoverOperator()
 						if (tab[m] == tab[n]) koniec = false;
 					}
 				}
-				std::cout << tab[n] << " ";
 			}
-			std::cout << std::endl;
+
+			for (int j = 0; j < SIZE_Y; j++)
+			{
+				for (int k = 0; k < SIZE_X; k++)
+				{
+					if (SIZE_X / 2 > k)
+					{
+						if (SIZE_Y / 2 > j) obszar[i].genotyp[k][j] = cwiartka[tab[0]][k][j];
+						else obszar[i].genotyp[k][j] = cwiartka[tab[2]][k][j % (SIZE_Y / 2)];
+					}
+					else
+					{
+						if (SIZE_Y / 2 > j) obszar[i].genotyp[k][j] = cwiartka[tab[1]][k % (SIZE_X / 2)][j];
+						else obszar[i].genotyp[k][j] = cwiartka[tab[3]][k % (SIZE_X / 2)][j % (SIZE_Y / 2)];
+					}
+				}
+			}
 		}
 	}
 }

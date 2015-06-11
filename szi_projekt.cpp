@@ -23,7 +23,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	while ( application::window.isOpen())
 	{
-
 		sf::Event event;
 		while (application::window.pollEvent(event))
 		{
@@ -113,11 +112,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		line.setFillColor(sf::Color::Black);
 		line.move(TILE_SIZE - 2, 0);
 		application::window.draw(line);
-		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		line.move(TILE_SIZE * SIZE_X, 0);
 		application::window.draw(line);
-		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		line.move(TILE_SIZE * SIZE_X, 0);
 		application::window.draw(line);
-		line.move(TILE_SIZE * SIZE_X - 2, 0);
+		line.move(TILE_SIZE * SIZE_X, 0);
 		application::window.draw(line);
 		
 		sf::RectangleShape line2(sf::Vector2f((application::gameMap.mapSize.x - 2) * TILE_SIZE, 5));

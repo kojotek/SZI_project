@@ -1,6 +1,6 @@
 #pragma once
 
-#define MOVE_FRAMES 40
+#define MOVE_FRAMES 15
 
 
 #define STATE_MINER 0

@@ -11,12 +11,9 @@ iDraw::iDraw()
 
 iDraw::~iDraw()
 {
-	for (int a(0); a < drawVector.size(); a++)
+	std::vector<iDraw*>::iterator it = std::find(drawVector.begin(), drawVector.end(), this);
+	if (it != drawVector.end())
 	{
-		if (this == drawVector[a])
-		{
-			drawVector.erase(drawVector.begin()+a);
-			break;
-		}
+		drawVector.erase(it);
 	}
 }
