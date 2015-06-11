@@ -178,72 +178,140 @@ void Miner::selection()
 
 void Miner::crossoverOperator()
 {
-	//wybieramy maksymalna ilosc par z populacji
+	osobnik rodzic1;
+	rodzic1.ocena = 0;
+	osobnik rodzic2;
+	rodzic2.ocena = 0;
+
+	//wybor 2 najlepszych osobnikow do krzyzowania
 	for (int i = 0; i < POPULATION_SIZE; i++)
 	{
-		float p = ((std::rand() % 100) + 1) / 100.0;
-
-		//krzyzowanie obszaru polega na podzieleniu obszaru na cwiartki i wymieszanie ich ze soba
-		if (p < CROSSOVER_RATIO)
+		if (obszar[i].ocena > rodzic1.ocena)
 		{
-			Tile * cwiartka[4][SIZE_X/2][SIZE_Y/2];
+			rodzic2 = rodzic1;
+			rodzic1 = obszar[i];
+		}
+		else if (obszar[i].ocena > rodzic2.ocena) rodzic2 = obszar[i];
+	}
+	
+	Tile * cwiartka1[4][SIZE_X/2][SIZE_Y/2];
+	Tile * cwiartka2[4][SIZE_X/2][SIZE_Y/2];
 
-			for (int j = 0; j < SIZE_Y; j++)
+	for (int j = 0; j < SIZE_Y; j++)
+	{
+		for (int k = 0; k < SIZE_X; k++)
+		{
+			if (SIZE_X / 2 > k)
 			{
-				for (int k = 0; k < SIZE_X; k++)
-				{
-					if (SIZE_X / 2 > k)
-					{
-						if (SIZE_Y / 2 > j) cwiartka[0][k][j] = obszar[i].genotyp[k][j];
-						else cwiartka[2][k][j % (SIZE_Y / 2)] = obszar[i].genotyp[k][j];
-					}
-					else
-					{
-						if (SIZE_Y / 2 > j) cwiartka[1][k % (SIZE_X / 2)][j] = obszar[i].genotyp[k][j];
-						else cwiartka[3][k % (SIZE_X / 2)][j % (SIZE_Y / 2)] = obszar[i].genotyp[k][j];
-					}
+				if (SIZE_Y / 2 > j) 
+				{ 
+					cwiartka1[0][k][j] = rodzic1.genotyp[k][j];
+					cwiartka2[0][k][j] = rodzic2.genotyp[k][j];
+				}
+				else 
+				{ 
+					cwiartka1[2][k][j % (SIZE_Y / 2)] = rodzic1.genotyp[k][j]; 
+					cwiartka2[2][k][j % (SIZE_Y / 2)] = rodzic2.genotyp[k][j];
 				}
 			}
-
-			//losowanie ciagu bez powtorzen
-			int tab[4];
-
-			for (int n = 0; n < 4; n++)
+			else
 			{
-				bool koniec = false;
-
-				while (!koniec)
-				{
-					koniec = true;
-					int r = std::rand() % 4;
-
-					tab[n] = r;
-
-					for (int m = 0; m < n; m++)
-					{
-						if (tab[m] == tab[n]) koniec = false;
-					}
+				if (SIZE_Y / 2 > j) 
+				{ 
+					cwiartka1[1][k % (SIZE_X / 2)][j] = rodzic1.genotyp[k][j];
+					cwiartka2[1][k % (SIZE_X / 2)][j] = rodzic2.genotyp[k][j];
 				}
-			}
-
-			for (int j = 0; j < SIZE_Y; j++)
-			{
-				for (int k = 0; k < SIZE_X; k++)
-				{
-					if (SIZE_X / 2 > k)
-					{
-						if (SIZE_Y / 2 > j) obszar[i].genotyp[k][j] = cwiartka[tab[0]][k][j];
-						else obszar[i].genotyp[k][j] = cwiartka[tab[2]][k][j % (SIZE_Y / 2)];
-					}
-					else
-					{
-						if (SIZE_Y / 2 > j) obszar[i].genotyp[k][j] = cwiartka[tab[1]][k % (SIZE_X / 2)][j];
-						else obszar[i].genotyp[k][j] = cwiartka[tab[3]][k % (SIZE_X / 2)][j % (SIZE_Y / 2)];
-					}
+				else 
+				{ 
+					cwiartka1[3][k % (SIZE_X / 2)][j % (SIZE_Y / 2)] = rodzic1.genotyp[k][j];
+					cwiartka2[3][k % (SIZE_X / 2)][j % (SIZE_Y / 2)] = rodzic2.genotyp[k][j];
 				}
 			}
 		}
 	}
+
+	//losowanie ciagu bez powtorzen
+	int tab1[4];
+	int tab2[4];
+
+	for (int n = 0; n < 4; n++)
+	{
+		bool koniec = false;
+
+		while (!koniec)
+		{
+			koniec = true;
+			int r1 = std::rand() % 4;
+			int r2 = std::rand() % 4;
+
+			tab1[n] = r1;
+			tab2[n] = r2;
+
+			for (int m = 0; m < n; m++)
+			{
+				if (tab1[m] == tab1[n]) koniec = false;
+				if (tab2[m] == tab2[n]) koniec = false;
+			}
+		}
+	}
+
+	for (int j = 0; j < SIZE_Y; j++)
+	{
+		for (int k = 0; k < SIZE_X; k++)
+		{
+			if (SIZE_X / 2 > k)
+			{
+				if (SIZE_Y / 2 > j) 
+				{ 
+					rodzic1.genotyp[k][j] = cwiartka2[tab2[0]][k][j];
+					rodzic2.genotyp[k][j] = cwiartka1[tab1[0]][k][j];
+				}
+				else 
+				{ 
+					rodzic1.genotyp[k][j] = cwiartka2[tab2[2]][k][j % (SIZE_Y / 2)];
+					rodzic2.genotyp[k][j] = cwiartka1[tab1[2]][k][j % (SIZE_Y / 2)];
+				}
+			}
+			else
+			{
+				if (SIZE_Y / 2 > j) 
+				{ 
+					rodzic1.genotyp[k][j] = cwiartka2[tab2[1]][k % (SIZE_X / 2)][j];
+					rodzic2.genotyp[k][j] = cwiartka1[tab1[1]][k % (SIZE_X / 2)][j];
+				}
+				else 
+				{ 
+					rodzic1.genotyp[k][j] = cwiartka2[tab2[3]][k % (SIZE_X / 2)][j % (SIZE_Y / 2)];
+					rodzic2.genotyp[k][j] = cwiartka1[tab1[3]][k % (SIZE_X / 2)][j % (SIZE_Y / 2)];
+				}
+			}
+		}
+	}
+
+	osobnik potomek1;
+	potomek1 = rodzic1;
+	osobnik potomek2;
+	potomek2 = rodzic2;
+	int a = 0, b = 0;
+
+	for (int i = 0; i < POPULATION_SIZE; i++)
+	{
+		if (obszar[i].ocena < potomek1.ocena)
+		{
+			potomek2 = potomek1;
+			b = a;
+			potomek1 = obszar[i];
+			a = i;
+		}
+		else if (obszar[i].ocena < potomek2.ocena) 
+		{ 
+			potomek2 = obszar[i];
+			b = i;
+		}
+	}
+
+	obszar[a] = rodzic1;
+	obszar[b] = rodzic2;
 }
 
 void Miner::mutationOperator()
